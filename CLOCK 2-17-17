@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<body>
+<h1>Block Ends</h1>
+<div id="clockdiv">
+  <div>
+    <span class="days"></span>
+    <div class="smalltext">Block ends</div>
+  </div>
+  <div>
+    <span class="hours"></span>
+    <div class="smalltext">Hours</div>
+  </div>
+  <div>
+    <span class="minutes"></span>
+    <div class="smalltext">Minutes</div>
+  </div>
+  <div>
+    <span class="seconds"></span>
+    <div class="smalltext">Seconds</div>
+  </div>
+</div>
+<script>
+function getTimeRemaining() {
+  
+  var t = Date.parse(new findEndtime()) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    'total': t,
+    'days': new findEndtime(),
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+function initializeClock(id) {
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+
+  function updateClock() {
+    var t = getTimeRemaining(new findEndtime());
+
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+        
+        
+     
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+function resetClock(){
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+  //THIS IS THE IMPORTANT PART OF THE CODE
+  //THIS IS WHERE THE END TIME OF THE CLOCK IS DECLARED
+  //DEADLINE IS SET EQUAL TO A SPECIFIC TIME RIGHT NOW,
+  //WE WILL PUT OUR ARRAYS FOR BLOCK END TIMES HERE
+  
+  
+  
+  //var deadline;
+function findEndtime(){
+
+  var today = new Date();
+  /*
+if(((today.getHours() == 7) && (today.getMinutes() >= 45)) || ((today.getHours() == 8) && (today.getMinutes() < 47))){ 
+  var deadline = new Date(today.getFullYear(), today.getMonth(), today.getDate, 8, 45 , 0, 0
+  );
+  var currentblock = 1;
+}
+else if(((today.getHours() == 8) && (today.getMinutes() >= 47)) || ((today.getHours() ==9) && (today.getMinutes() < 47))){ 
+  var deadline = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 47 , 0, 0);
+  var currentblock = 2;
+}
+else if(((today.getHours() == 9 ) && (today.getMinutes() >= 47)) || ((today.getHours() == 10) && (today.getMinutes() < 47))){ 
+  var deadline = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 10, 47 , 0, 0);
+  var currentblock = 3;
+}
+else if(((today.getHours() == 10 ) && (today.getMinutes() >= 47)) || (today.getHours() == 11) || ((today.getHours() == 12) && (today.getMinutes() < 11))){ 
+  var deadline = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12, 11 , 0, 0);
+  var currentblock = 4
+  // 5 and 6 will be here when we add lunches
+}
+else if(((today.getHours() == 12 ) && (today.getMinutes() >= 11)) || ((today.getHours() == 13) && (today.getMinutes() < 11))){ 
+  var deadline = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 13, 11 , 0, 0);
+  var currentblock = 7;
+}
+else if(((today.getHours() == 13 ) && (today.getMinutes() >= 11)) || ((today.getHours() == 14) && (today.getMinutes() < 11))){ 
+  var deadline = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 14, 11 , 0, 0);
+  var currentblock = 8;
+}
+  else if(((today.getHours()==14)&&(today.getMinutes()>11))||((today.getHours()>14))){
+   var deadline = new Date(today.getFullYear(), today.getMonth(), (today.getDate()+1), 7, 45, 0, 0);
+   var currentblock = 9;
+  }
+  /*
+  else {
+ var deadline = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 14, 11 , 0, 0); 
+  }
+  */
+var deadline = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 25, 0, 0);
+
+   return deadline;
+}
+  
+  //var deadline = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12, 11, 0, 0);//Declares end time
+  initializeClock('clockdiv');//Tells the clock what the end time is and then runs it
+</script>
+<style>
+body{
+    text-align: center;
+    background: #00ECB9;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+
+#clockdiv{
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+}
+
+#clockdiv > div{
+    padding: 10px;
+    border-radius: 3px;
+    background: #00BF96;
+    display: inline-block;
+}
+
+#clockdiv div > span{
+    padding: 15px;
+    border-radius: 3px;
+    background: #00816A;
+    display: inline-block;
+}
+
+.smalltext{
+    padding-top: 5px;
+    font-size: 16px;
+}
+</style>
+  </body>
+</html>
