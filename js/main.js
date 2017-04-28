@@ -76,7 +76,7 @@ else if(((today.getHours() == 10 ) && (today.getMinutes() >= 47)) || ((today.get
   var currentblock = 4;
   // 5 and 6 will be here when we add lunches
 }
-else if(((today.getHours() == 11 ) && (today.getMinutes() >= 18)) || ((today.getHours() == 11) && (today.getMinutes() < 49))) {
+else if(((today.getHours() == 11 ) && (today.getMinutes() >= 18) && (today.getMinutes() < 49))) {
   var deadline = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 49 , 0, 0);
   var currentblock = 5;
 }
