@@ -6,13 +6,23 @@ function getTimeRemaining() {
   var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
   var days = Math.floor(t / (1000 * 60 * 60 * 24));
   var extra = new findEndtime();
-  return {
-    'total': t,
-    'days': (extra.getHours()%12) + ":" + extra.getMinutes(),
-    'hours': hours,
-    'minutes': minutes,
-    'seconds': seconds
+  if (extra.getHours()%12==0){
+    return {
+      'total': t,
+      'days': (12) + ":" + extra.getMinutes(),
+      'hours': hours,
+      'minutes': minutes,
+      'seconds': seconds
   };
+  } else {
+    return {
+      'total': t,
+      'days': (extra.getHours()%12) + ":" + extra.getMinutes(),
+      'hours': hours,
+      'minutes': minutes,
+      'seconds': seconds
+  };
+    
 }
 function initializeClock(id) {
   var clock = document.getElementById(id);
