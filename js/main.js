@@ -13,7 +13,7 @@ function getTimeRemaining() {
       'hours': hours,
       'minutes': minutes,
       'seconds': seconds
-  };
+    };
   } else {
     return {
       'total': t,
@@ -21,8 +21,8 @@ function getTimeRemaining() {
       'hours': hours,
       'minutes': minutes,
       'seconds': seconds
-  };
-    
+    };
+  }  
 }
 function initializeClock(id) {
   var clock = document.getElementById(id);
